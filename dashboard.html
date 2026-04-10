@@ -15,7 +15,7 @@
         input { width: 100%; padding: 12px; background: #222; border: 1px solid #333; color: white; border-radius: 8px; margin-bottom: 20px; box-sizing: border-box; font-size: 1rem; }
         .btn-wa { background: #25d366; color: white; padding: 16px; border-radius: 50px; border: none; width: 100%; cursor: pointer; font-weight: bold; text-transform: uppercase; font-size: 1rem; transition: 0.3s; }
         .btn-wa:hover { background: #20ba5a; transform: translateY(-2px); }
-        .footer { text-align: center; margin-top: 30 weddings; opacity: 0.4; font-size: 0.7rem; }
+        .footer { text-align: center; margin-top: 30px; opacity: 0.4; font-size: 0.7rem; }
     </style>
 </head>
 <body>
@@ -32,9 +32,7 @@
         <button class="btn-wa" onclick="sendWA()">Kirim Undangan Sekarang</button>
     </div>
     <div class="footer">
-        DASHBOARD PENGELOLA TAMU<br>
-        Digital Invitation By Awal Hasibuan, S.Kom<br>
-        © 2026 Jul & Muna
+        Digital Invitation By Awal Hasibuan, S.Kom<br>© 2026 Jul & Muna
     </div>
 </div>
 
@@ -48,14 +46,14 @@
             return;
         }
 
-        // 1. Bersihkan URL
+        // 1. Bersihkan URL dari slash di akhir
         if(base.endsWith('/')) base = base.slice(0,-1);
 
-        // 2. Buat link dengan tanda + agar BIRU UTUH (spasi otomatis jadi +)
+        // 2. Buat link dengan tanda + agar BIRU UTUH di WhatsApp
         const nameUrl = name.replace(/\s+/g, '+');
         const finalLink = base + "/?to=" + nameUrl;
 
-        // 3. Susun Pesan sesuai draf Jul & Muna
+        // 3. Susun Pesan dengan karakter \n untuk baris baru
         const pesan = 
             "Yth. Bapak/Ibu/Saudara/i\n" +
             "*" + name + "*\n" +
@@ -84,7 +82,7 @@
             "🙏 Hormat Kami,\n" +
             "_Jul & Muna_";
 
-        // 4. Encode seluruh pesan agar simbol & dan baris baru terbaca sempurna
+        // 4. Encode seluruh pesan agar simbol & dan baris baru terkirim dengan benar
         const encodedPesan = encodeURIComponent(pesan);
         
         // 5. Eksekusi buka WhatsApp
